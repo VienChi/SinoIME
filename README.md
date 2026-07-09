@@ -65,7 +65,7 @@ Liên hệ
 ---
 
 Nếu phát hiện chương trình có lỗi (BUG), có đề xuất hay cảm nghĩ, 
-Hay để trao đổi kỹ thuật, hoan nghênh ghé thăm [Phương Viên](https://bogo.hannom.org),
-hoặc gửi thư cho các nhà phát triển Phương Viên <support@hannom.org>.
+hay để trao đổi kỹ thuật, hoan nghênh bạn ghé thăm [Phương Viên](https://bogo.hannom.org),
+hoặc gửi thư cho nhà phát triển Phương Viên qua địa chỉ <support@hannom.org>.
 
 Trân thành cảm ơn!
