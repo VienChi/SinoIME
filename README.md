@@ -1,23 +1,18 @@
 # SinoIME
 Phương Viên trên MacOS
 
-    Quản bút lông chuột
-    Vật tuy nhỏ bé, tình chẳng cạn
-    Thơ mới say mực, phóng bút một lần
-    Xa cách gửi tôi, chẳng ngại đường xa
+    Vàng mua chứa để vàng hay hết
+    Chữ bán dư ăn chữ hãy còn
 
-    　　　— Âu Dương Tu
+    　　　— Nguyễn Khuyến
 
 Được vận hành mạnh mẽ bởi　[Bộ máy gõ Trung Châu Vận／Rime Input Method Engine](https://rime.im)
 cùng các công nghệ mã nguồn mở khác
 
 【SinoIME · Phương Viên】Bộ gõ
 ===
-[![Download](https://img.shields.io/github/v/release/hannom/sinoime)](https://github.com/hannom/sinoime/releases/latest)
-[![Build Status](https://github.com/hannom/sinoime/actions/workflows/commit-ci.yml/badge.svg)](https://github.com/hannom/sinoime/actions/workflows)
-[![GitHub Tag](https://img.shields.io/github/tag/hannom/sinoime.svg)](https://github.com/hannom/sinoime)
 
-Copyleft — Các nhà phát triển RIME
+Copyleft — Phương Viên Các
 
 Giấy phép mã nguồn: [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
@@ -111,12 +106,12 @@ Cảm ơn Vương công tử đã tài trợ máy móc phục vụ phát triển
 Vấn đề và phản hồi
 ---
 
-Nếu phát hiện chương trình có lỗi (BUG), có đề xuất hay cảm nghĩ, vui lòng phản hồi tại [khu thảo luận Rime Code Home](https://github.com/rime/home/discussions)
+Nếu phát hiện chương trình có lỗi (BUG), có đề xuất hay cảm nghĩ, vui lòng phản hồi theo thông tin liên hệ bên dưới.
 
 Liên hệ
 ---
 
-Để trao đổi kỹ thuật, hoan nghênh ghé thăm [Rime Code Home](https://github.com/rime/home),
-hoặc gửi thư cho các nhà phát triển Rime <rimeime@gmail.com>.
+Để trao đổi kỹ thuật, hoan nghênh ghé thăm [Phương Viên](https://bogo.hannom.org),
+hoặc gửi thư cho các nhà phát triển Phương Viên <support@hannom.org>.
 
 Cảm ơn
