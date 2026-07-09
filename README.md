@@ -9,7 +9,7 @@ Phương Viên trên MacOS
 Được vận hành mạnh mẽ bởi　[Bộ máy gõ Trung Châu Vận／Rime Input Method Engine](https://rime.im)
 cùng các công nghệ mã nguồn mở khác
 
-【SinoIME · Phương Viên】Bộ gõ
+【SinoIME · Phương Viên】Bộ gõ Hán Nôm
 ===
 
 Copyleft — Phương Viên Các
