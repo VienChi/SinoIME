@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+login_user=`/usr/bin/stat -f%Su /dev/console`
+sinoime_app_root="${DSTROOT}/SinoIME.app"
+sinoime_executable="${sinoime_app_root}/Contents/MacOS/SinoIME"
+rime_package_installer="${sinoime_app_root}/Contents/MacOS/rime-install"
+rime_shared_data_path="${sinoime_app_root}/Contents/SharedSupport"
+
+/usr/bin/sudo -u "${login_user}" /usr/bin/killall SinoIME > /dev/null || true
+
+"${sinoime_executable}" --register-input-source
+
+if [ -z "${RIME_NO_PREBUILD}" ]; then
+    pushd "${rime_shared_data_path}" > /dev/null
+    "${sinoime_executable}" --build
+    popd > /dev/null
+fi && (
+    /usr/bin/sudo -u "${login_user}" "${sinoime_executable}" --enable-input-source
+    /usr/bin/sudo -u "${login_user}" "${sinoime_executable}" --select-input-source
+)

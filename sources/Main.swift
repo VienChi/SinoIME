@@ -1,0 +1,176 @@
+//
+//  Main.swift
+//  SinoIME
+//
+//  Created by Leo Liu on 5/10/24.
+//
+
+import Foundation
+import InputMethodKit
+
+@main
+struct SinoIMEApp {
+  static let userDir = if let pwuid = getpwuid(getuid()) {
+    URL(fileURLWithFileSystemRepresentation: pwuid.pointee.pw_dir, isDirectory: true, relativeTo: nil).appending(components: "Library", "Rime")
+  } else {
+    try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Rime", isDirectory: true)
+  }
+  static let appDir = "/Library/Input Library/SinoIME.app".withCString { dir in
+    URL(fileURLWithFileSystemRepresentation: dir, isDirectory: false, relativeTo: nil)
+  }
+  static let logDir = FileManager.default.temporaryDirectory.appending(component: "rime.sinoime", directoryHint: .isDirectory)
+
+  // swiftlint:disable:next cyclomatic_complexity
+  static func main() {
+    let rimeAPI: RimeApi_stdbool = rime_get_api_stdbool().pointee
+
+    let handled = autoreleasepool {
+      let installer = SinoIMEInstaller()
+      let args = CommandLine.arguments
+      if args.count > 1 {
+        switch args[1] {
+        case "--quit":
+          let bundleId = Bundle.main.bundleIdentifier!
+          let runningSinoIMEs = NSRunningApplication.runningApplications(withBundleIdentifier: bundleId)
+          runningSinoIMEs.forEach { $0.terminate() }
+          return true
+        case "--reload":
+          DistributedNotificationCenter.default().postNotificationName(.init("SinoIMEReloadNotification"), object: nil)
+          return true
+        case "--register-input-source", "--install":
+          installer.register()
+          return true
+        case "--enable-input-source":
+          if args.count > 2 {
+            let modes = args[2...].map { SinoIMEInstaller.InputMode(rawValue: $0) }.compactMap { $0 }
+            if !modes.isEmpty {
+              installer.enable(modes: modes)
+              return true
+            }
+          }
+          installer.enable()
+          return true
+        case "--disable-input-source":
+          if args.count > 2 {
+            let modes = args[2...].map { SinoIMEInstaller.InputMode(rawValue: $0) }.compactMap { $0 }
+            if !modes.isEmpty {
+              installer.disable(modes: modes)
+              return true
+            }
+          }
+          installer.disable()
+          return true
+        case "--select-input-source":
+          if args.count > 2, let mode = SinoIMEInstaller.InputMode(rawValue: args[2]) {
+            installer.select(mode: mode)
+          } else {
+            installer.select()
+          }
+          return true
+        case "--build":
+          SinoIMEApplicationDelegate.showMessage(msgText: NSLocalizedString("deploy_update", comment: ""))
+          var builderTraits = RimeTraits.rimeStructInit()
+          builderTraits.setCString("sinoime-builder", to: \.app_name)
+          rimeAPI.setup(&builderTraits)
+          rimeAPI.deployer_initialize(nil)
+          _ = rimeAPI.deploy()
+          return true
+        case "--sync":
+          DistributedNotificationCenter.default().postNotificationName(.init("SinoIMESyncNotification"), object: nil)
+          return true
+        case "--ascii":
+          DistributedNotificationCenter.default().postNotificationName(.init("SinoIMEToggleASCIIModeNotification"), object: "ascii")
+          return true
+        case "--nascii":
+          DistributedNotificationCenter.default().postNotificationName(.init("SinoIMEToggleASCIIModeNotification"), object: "nascii")
+          return true
+        case "--getascii":
+          var responseReceived = false
+          var asciiStatus = ""
+          let observer = DistributedNotificationCenter.default().addObserver(
+            forName: .init("SinoIMEASCIIModeResponse"),
+            object: nil,
+            queue: .main
+          ) { notification in
+            if let status = notification.object as? String {
+              asciiStatus = status
+              responseReceived = true
+            }
+          }
+          DistributedNotificationCenter.default().postNotificationName(.init("SinoIMEGetASCIIModeNotification"), object: nil)
+          let timeout = Date().addingTimeInterval(2.0)
+          while !responseReceived && Date() < timeout {
+            RunLoop.current.run(until: Date().addingTimeInterval(0.01))
+          }
+          DistributedNotificationCenter.default().removeObserver(observer)
+          if responseReceived {
+            print(asciiStatus)
+          } else {
+            print("nascii")
+          }
+          return true
+        case "--help":
+          print(helpDoc)
+          return true
+        default:
+          break
+        }
+      }
+      return false
+    }
+    if handled {
+      return
+    }
+
+    autoreleasepool {
+      let main = Bundle.main
+      let connectionName = main.object(forInfoDictionaryKey: "InputMethodConnectionName") as! String
+      _ = IMKServer(name: connectionName, bundleIdentifier: main.bundleIdentifier!)
+      let app = NSApplication.shared
+      let delegate = SinoIMEApplicationDelegate()
+      app.delegate = delegate
+      app.setActivationPolicy(.accessory)
+
+      // OpenCC uses relative dictionary paths from SharedSupport.
+      FileManager.default.changeCurrentDirectoryPath(main.sharedSupportPath!)
+
+      if NSApp.sinoimeAppDelegate.problematicLaunchDetected() {
+        print("Problematic launch detected!")
+        let args = ["Problematic launch detected! SinoIME may be suffering a crash due to improper configuration. Revert previous modifications to see if the problem recurs."]
+        let task = Process()
+        task.executableURL = "/usr/bin/say".withCString { dir in
+          URL(fileURLWithFileSystemRepresentation: dir, isDirectory: false, relativeTo: nil)
+        }
+        task.arguments = args
+        try? task.run()
+      } else {
+        NSApp.sinoimeAppDelegate.setupRime()
+        NSApp.sinoimeAppDelegate.startRime(fullCheck: false)
+        NSApp.sinoimeAppDelegate.loadSettings()
+        print("SinoIME reporting!")
+      }
+
+      app.run()
+      print("SinoIME is quitting...")
+      rimeAPI.finalize()
+    }
+    return
+  }
+
+  static let helpDoc = """
+Supported arguments:
+Perform actions:
+  --quit                     quit all SinoIME process
+  --reload                   deploy
+  --sync                     sync user data
+  --build                    build all schemas in current directory
+  --ascii                    turn on ASCII mode
+  --nascii                   turn off ASCII mode
+  --getascii                 get current ASCII mode status
+Install SinoIME:
+  --install, --register-input-source    register input source
+  --enable-input-source [source id...]  input source list optional
+  --disable-input-source [source id...] input source list optional
+  --select-input-source [source id]     input source optional
+"""
+}
