@@ -6,8 +6,8 @@ Phương Viên trên MacOS
 
     　　　— Nguyễn Khuyến
 
-Được vận hành mạnh mẽ bởi　[Bộ máy gõ Trung Châu Vận／Rime Input Method Engine](https://rime.im)
-cùng các công nghệ mã nguồn mở khác
+Được giúp sức mạnh mẽ bởi　[Bộ máy gõ Trung Châu Vận／Rime Input Method Engine](https://rime.im)
+cùng các công nghệ mã nguồn mở khác.
 
 【SinoIME · Phương Viên】Bộ gõ Hán Nôm
 ===
@@ -20,7 +20,7 @@ Giấy phép mã nguồn: [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 Trang chủ dự án: [hannom.org](https://hannom.org)
 
-Bạn có thể còn cần đến các bản Rime khác cho hệ điều hành khác:
+Bạn có thể còn cần đến các bản Phương Viên khác cho hệ điều hành khác:
 
   * 【Phương Viên】(Keyboard) dùng cho iOS
   * 【Phương Viên】(NomIME) dùng cho Windows
@@ -60,58 +60,12 @@ Bản quyền dữ liệu
 
 Mã nguồn của SinoIME (khung ứng dụng, engine Rime, các thư viện mã nguồn mở đi kèm) được phát hành theo giấy phép GPL v3 như trên. Tuy nhiên, mọi dữ liệu/từ điển Hán Nôm riêng do Phương Viên biên soạn và phân phối cùng bộ gõ này — kể cả khi được bổ sung ở các phiên bản sau — thuộc bản quyền riêng của Phương Viên và **không** được cấp phép theo GPLv3 hay bất kỳ giấy phép mã nguồn mở nào khác, trừ khi có văn bản cho phép riêng.
 
-Cảm ơn
----
-
-Thiết kế phương án gõ:
-
-  * Chuỗi 【朙月拼音】(Minh Nguyệt Bính Âm)
-
-    Cảm ơn các dự án mã nguồn mở CC-CEDICT, Android 拼音, Tân Toại Âm (新酷音), OpenCC...
-
-Thiết kế chương trình:
-
-  * 佛振 (Phật Chấn)
-  * Linghua Zhang
-  * Chongyu Zhu
-  * 雪齋 (Tuyết Trai)
-  * faberii
-  * Chun-wei Kuo
-  * Junlu Cheng
-  * Jak Wings
-  * xiehuc
-
-Mỹ thuật:
-
-  * Thiết kế biểu tượng: 佛振 (Phật Chấn), 梁海 (Lương Hải), 雨過之後 (Vũ Quá Chi Hậu)
-  * Phối màu: Aben, Chongyu Zhu, skoj, Superoutman, 佛振 (Phật Chấn), 梁海 (Lương Hải)
-
-Sản phẩm này sử dụng các phần mềm mã nguồn mở sau:
-
-  * Boost C++ Libraries  (Boost Software License)
-  * capnproto (MIT License)
-  * darts-clone  (New BSD License)
-  * google-glog  (New BSD License)
-  * Google Test  (New BSD License)
-  * LevelDB  (New BSD License)
-  * librime  (New BSD License)
-  * OpenCC / Khai Phóng Trung Văn Chuyển Hoán  (Apache License 2.0)
-  * plum / Đông Phong Phá (東風破) (GNU Lesser General Public License 3.0)
-  * Sparkle  (MIT License)
-  * UTF8-CPP  (Boost Software License)
-  * yaml-cpp  (MIT License)
-
-Cảm ơn Vương công tử đã tài trợ máy móc phục vụ phát triển.
-
-Vấn đề và phản hồi
----
-
-Nếu phát hiện chương trình có lỗi (BUG), có đề xuất hay cảm nghĩ, vui lòng phản hồi theo thông tin liên hệ bên dưới.
 
 Liên hệ
 ---
 
-Để trao đổi kỹ thuật, hoan nghênh ghé thăm [Phương Viên](https://bogo.hannom.org),
+Nếu phát hiện chương trình có lỗi (BUG), có đề xuất hay cảm nghĩ, 
+Hay để trao đổi kỹ thuật, hoan nghênh ghé thăm [Phương Viên](https://bogo.hannom.org),
 hoặc gửi thư cho các nhà phát triển Phương Viên <support@hannom.org>.
 
-Cảm ơn
+Trân thành cảm ơn!
