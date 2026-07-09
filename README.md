@@ -18,12 +18,12 @@ Giấy phép mã nguồn: [GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 > **© Phương Viên.** Dữ liệu/từ điển Hán Nôm được bảo lưu mọi quyền, không thuộc phạm vi giấy phép GPLv3 của mã nguồn. Xem thêm ở mục [Bản quyền dữ liệu](#bản-quyền-dữ-liệu) bên dưới.
 
-Trang chủ dự án: [rime.im](https://rime.im)
+Trang chủ dự án: [hannom.org](https://hannom.org)
 
 Bạn có thể còn cần đến các bản Rime khác cho hệ điều hành khác:
 
-  * 【中州韻】(ibus-rime, fcitx-rime) dùng cho Linux
-  * 【小狼毫】(Weasel) dùng cho Windows
+  * 【Phương Viên】(Keyboard) dùng cho iOS
+  * 【Phương Viên】(NomIME) dùng cho Windows
 
 Cài đặt bộ gõ
 ---
@@ -35,13 +35,13 @@ Khi cài đặt lần đầu, nếu một số ứng dụng không gõ được 
 Sử dụng bộ gõ
 ---
 
-Chọn biểu tượng chữ 【ㄓ】 trong menu chỉ báo bộ gõ để bắt đầu gõ chữ với SinoIME.
+Chọn biểu tượng chữ 【ㄊ】 trong menu chỉ báo bộ gõ để bắt đầu gõ chữ với SinoIME.
 Dùng phím tắt `` Ctrl+` `` hoặc `F4` để mở bảng chọn phương án, chuyển đổi cách gõ.
 
 Tùy chỉnh bộ gõ
 ---
 
-Về cách tùy chỉnh, vui lòng tham khảo [tài liệu trợ giúp](https://rime.im/docs/) trực tuyến.
+Về cách tùy chỉnh, vui lòng tham khảo [tài liệu trợ giúp](https://bogo.hannom.org/docs/) trực tuyến.
 
 Sử dụng menu bộ gõ của hệ thống:
 
